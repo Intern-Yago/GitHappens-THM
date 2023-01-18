@@ -1,0 +1,19 @@
+ip = 10.10.16.253
+
+Nmap:
+    Acusou apenas a porta 80 aberta
+    
+Gobuster:
+    Descobriu o diretório .git/HEAD
+
+Com um script eu baixei o .git deles:
+./../reverse-shell/gitdumper.sh http://10.10.16.253/.git/ ./
+
+E verifiquei os logs.
+Tinha um commit que se chamava: "Made the login page, boss!"
+Decidi acessar ele para ver:
+checkout 395e087
+
+Ele então me trouxe o index.html e olhando o código podemos encontrar:
+username === "admin" &&
+password === "Th1s_1s_4_L0ng_4nd_S3cur3_P4ssw0rd!"
